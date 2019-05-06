@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>模板</title>
+    </head>
+    <body>
+        <script>
+            
+            // 数组：数组可以理解为一个对象，但是和普通对象不同的是，普通对象的属性名称是字符串，而数组的属性名是数组，也叫做索引
+            
+            //定义数组：
+            var arr01 = new Array();
+            arr01[0] = 20;
+            arr01[1] = 30;
+
+            console.log(arr01);
+            console.log(typeof arr01);//object 说明数组实际上就是一个对象
+            console.log(arr01.length);
+            arr01[arr01.length] = 13;
+            arr01[arr01.length] = 23;
+            arr01[arr01.length] = 16;
+            console.log(arr01);
+
+            // Array[Array.length] = 值  可以通过这个方法向数组的最末尾添加数值
+
+            arr01.length = 4;
+            console.log(arr01);
+
+            arr01.length = 7;
+            console.log(arr01);// [20, 30, 13, 23, empty × 3]
+            console.log(arr01[4]);//undefined
+
+            // 通过 Array.length = 值  可以重新设置 数组的长度
+            // 1. 如果 重新设置的值小于初始值，那么数组会删减掉后面多出的
+            // 2. 如果 重新设置的值大于初始值，那么数组后面会多出来相应数量的数值，但是因为多出来的数值未定义，所以是undefined
+
+            // 创建数组的方式：
+            // 1. 使用 new Array() 创建数组  注意：括号里面 元素之间要用 逗号 隔开
+            var arr01 = new Array(10,20,30);
+            console.log(arr01);
+
+            // 2. 使用 字面量 的方式创建数组
+            var arr01 = [11,12,13,14];
+            console.log(arr01);
+
+            // 3. 使用 new Array(数组长度) 创建数组，括号里只有一个参数，就是 数组的长度
+            var arr01 = new Array(8);
+            console.log(arr01);
+            // 这种方式可以创建 自定义长度的数值，但是还是要相应的给数组赋值，所以比较少用
+
+            // 一般更多的是使用 字面量 的方式创建数组
+            // 数组里面的元素可以是 其他几种数据类型，函数，对象，构造函数等等
+
+
+            // 有关数组删减的方法：都对数组有影响
+            // 1. push() --> 括号里的参数是要添加的元素，可以不只一个，多个元素之间要用 逗号 隔开
+            //    1.1 向后添加元素
+            //    1.2 返回新数组的长度
+            var arr01 = [11,12,13,14];
+            console.log(arr01.push(12));
+            console.log(arr01);
+            console.log(arr01.push(14,15));
+            console.log(arr01);
+
+            // 2. pop() --> 向 pop 传递参数没有效果
+            //    2.1 删除数组的最后一个元素
+            //    2.2 返回删除的元素
+            var arr01 = [1,2,4,8];
+            console.log(arr01);
+            console.log(arr01.pop());
+
+            // 3. unshift() --> 括号里的参数是要添加的元素，可以不只一个，多个元素之间要用 逗号 隔开
+            //    3.1 向前添加元素
+            //    3.2 返回新数组的长度
+            var arr01 = [4,5,6,8,9];
+            console.log(arr01);
+            console.log(arr01.unshift(4,5));
+            console.log(arr01);
+
+            // 4. shift() --> 向 shift 传递参数没有效果
+            //    4.1 删除数组的第一个元素
+            //    4.2 返回删除的元素
+            var arr01 = [7,8,9,3];
+            console.log(arr01);
+            console.log(arr01.shift());
+            console.log(arr01);
+
+
+            // 遍历数组的方法：
+            // 1. forEach()
+            //    1.1 第一个参数是 元素值
+            //    1.2 第二个参数是 索引值
+            //    1.3 第三个参数是 数组本身
+            var arr01 = ["张三","李四","王五","赵六","董七"];
+            console.log(arr01);
+            arr01.forEach(function(value){
+                console.log(value);
+            });
+            arr01.forEach(function(value,index){
+                console.log(index+" --> "+value);
+            });
+            arr01.forEach(function(value,index,obj){
+                console.log(index+" --> "+value+" --> "+obj.length);
+            });
+
+            // 2. slice() --> 删除数组的元素
+            //    2.1 第一个参数是 开始位置的索引（包含）
+            //    2.2 第二个参数是 结束位置的索引（不包含）
+            //    2.3 返回删除的数组
+            // 但是 slice() 不会影响原数组
+            var arr01 = [4,3,5,1,9];
+            console.log(arr01);
+            console.log(arr01.slice(1,3));
+            console.log(arr01);
+
+            // 3. splice()
+            //    3.1 第一个参数是 开始位置的索引
+            //    3.2 第二个参数是 要删除的数组的长度
+            //    3.3 第三个参数及之后的参数 都添加进数组，有种替换的感觉
+            //    3.4 返回删除的数组
+            // splice() 会影响原数组
+            var arr01 = [6,3,4,2,8];
+            console.log(arr01);
+            console.log(arr01.splice(1,3,45,46,47));
+            console.log(arr01);
+
+
+            // 4. concat() --> 用于连接两个数组
+            //    4.1 参数是 要连接的数组
+            var arr01 = [1,2,3];
+            var arr02 = [4,5,6];
+            console.log(arr01);
+            console.log(arr02);
+            console.log("arr01+arr02:"+arr01.concat(arr02));
+            console.log("arr02+arr01:"+arr02.concat(arr01));
+
+            // 5. join() --> 将数组转换成一个字符串
+            //    5.1 如果不加参数的话，功能和 toString() 是一样的
+            //    5.2 参数就是 连接元素的字符，默认是逗号连接元素的，如果有参数了，那么就把逗号换成相应的参数
+            //    5.3 对原数组没有影响
+            var arr01 = [1,2,3,4,5,6];
+            console.log(arr01);
+            console.log(arr01.join());//1,2,3,4,5,6
+            console.log(arr01.toString());//1,2,3,4,5,6
+            console.log("加了@之后： "+arr01.join("@"));//1@2@3@4@5@6
+            console.log("加了$之后： "+arr01.join("$"));//1$2$3$4$5$6
+            console.log(arr01);
+
+            // 6. reverse() --> 数组翻转
+            //    6.1 没有参数
+            //    6.2 返回一个翻转之后的数组
+            //    6.3 对原数组有影响
+            var arr01 = [1,2,3,4,5,6];
+            console.log(arr01);
+            console.log(arr01.reverse());
+            console.log(arr01);
+
+            // 7. sort() --> 用于数组的排序
+            //    7.1 对原数组有影响
+            //    7.2 使用的时候建议传递一个函数，function(a,b){ return(a-b)或者(b-a) } 如果返回一个正数，就交换位置，否则，不会交换位置
+            var arr01 = [4,81,3,1,9,6];
+            console.log(arr01);
+            console.log(arr01.sort());
+            console.log(arr01);
+            console.log(arr01.sort(function(a,b){ return(b-a); }));//大到小
+            console.log(arr01.sort(function(a,b){ return(a-b); }));//小到大
+            console.log(arr01);
+
+
+            // 可以使用 isArray() 来检查是否是数组
+            console.log(arr01 instanceof Array);//true
+            console.log(Array.isArray(arr01));//true
+
+            
+
+        </script>
+    </body>
+</html>

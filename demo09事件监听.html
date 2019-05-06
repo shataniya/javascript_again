@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>事件监听</title>
+        
+        <style>
+        #div1{
+            width:100px;
+            height:100px;
+            padding:10px;
+            border:10px solid #b0b0b0;
+            background-color: aqua;
+        }
+
+        #div2{
+            width: 80px;
+            height: 80px;
+            background-color: blueviolet;
+        }
+
+        #div3{
+            width:50px;
+            height:50px;
+            background-color:chartreuse;
+        }
+        
+        </style>
+    </head>
+    <body>
+        <div id="div1">
+            <div id="div2">
+                <div id="div3"></div>
+            </div>
+        </div>
+        <script>
+            var div1 = document.querySelector("#div1");
+            var div2 = document.querySelector("#div2");
+            var div3 = document.querySelector("#div3");
+
+            console.log("div1.offsetWidth = "+div1.offsetWidth);//140
+            console.log("div1.clientWidth = "+div1.clientWidth);//120
+
+            // div1.onclick = function(){
+            //     console.log("div1 id click");
+            // };
+            // div2.onclick = function(){
+            //     console.log("div2 id click");
+            // };
+            // div3.onclick = function(){
+            //     console.log("div3 id click");
+            // };
+            // div3.onclick = function(){
+            //     console.log("div3 id click again");
+            // };
+
+            // 普通的点击事件只会覆盖
+            // div3.addEventListener("click",function(){
+            //     console.log("div3 id click");//先执行
+            // });
+            // div3.addEventListener("click",function(){
+            //     console.log("div3 id click again");//后执行
+            // });
+
+            // IE8 支持 attachEvent 谷歌不支持
+            // div3.attachEvent("onclick",function(){
+            //     console.log("div3 id click");//后执行
+            // });
+            // div3.attachEvent("onclick",function(){
+            //     console.log("div3 id click again");//先执行
+            // });
+
+            div1.addEventListener("click",function(){
+                console.log("div1 id click");
+            },false);
+            div2.addEventListener("click",function(){
+                console.log("div2 id click");
+            },true);
+            div3.addEventListener("click",function(){
+                console.log("div3 id click");
+            },true);
+
+            
+
+            // 事件监听的特点：【addEventListener】
+            // 1. 先添加的先执行，后添加的后执行
+            // 2. 参数：
+                // - 参数一是 事件名，但是不要 on，例如：点击事件是 click
+                // - 参数二是 回调函数
+                // - 参数三是 是否在 事件捕获阶段 触发
+                    // - 如果是true，说明在事件的捕获阶段触发【外向里触发事件】
+                    // - 如果为false，说明不在事件的捕获阶段触发【里向外触发事件】
+
+        </script>
+    </body>
+</html>

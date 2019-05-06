@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>demo05call和apply</title>
+    </head>
+    <body>
+        <script>
+            
+            function Person(name,age,sex){
+                this.name = name;
+                this.age = age;
+                this.sex = sex;
+            };
+
+            Person.prototype.sayName = function(){
+                return(this.name);
+            };
+            Person.prototype.sayAge = function(){
+                return(this.age);
+            };
+            Person.prototype.saySex = function(){
+                return(this.sex);
+            };
+            Person.prototype.output = function(){
+                return("name:"+this.name+",age:"+this.age+",sex:"+this.sex);
+            };
+
+            var per01 = new Person("laowang",23,"man");
+            console.log(per01);
+            console.log(per01.output());
+            console.log(per01.sayName.call(per01));
+            console.log(per01.sayName.apply(per01));
+            console.log(per01.sayName());
+
+            var per02 = new Person("lisi",12,"woman");
+            console.log(per02);
+            console.log(per02.output());
+            console.log(per01.sayName.call(per02));
+
+            per01.__proto__.callName = function(){
+                console.log(this.name);
+            };
+            per01.callName();
+
+            function add(a,b){
+                return(a+b);
+            };
+            console.log(add(2,3));
+            console.log(add.call(0,2,3));
+            console.log(add.apply(0,[2,3]));
+            console.log(add.call(4,2,3));
+
+            // call() 和 apply() 可以传递很多参数
+            //    1.1 第一个参数是 指定的对象
+            //    1.2 之后的参数就是 要传递的参数，一般是实参
+            // call() 和 apply() 的不同之处就是：call 可以直接传递实参，但是 apply 必须是数组的形式传递参数
+        
+        </script>
+    </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>原型对象</title>
+    </head>
+    <body>
+        <script>
+            
+            // 使用构造函数 分别创建了人 和 狗 的构造函数
+            function Person(name,age,gender){
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+            };
+            function Dog(name,age){
+                this.name = name;
+                this.age = age;
+            };
+
+            var per1 = new Person('lisi',20,'man');
+            var dog1 = new Dog('旺财',8);
+
+            console.log(per1);
+            console.log(per1.name);
+            console.log(dog1);
+            console.log(dog1.name);
+
+            //使用 instanceof 可以查看 对象是不是某个 构造函数的实例
+            console.log(per1 instanceof Person);//true
+            console.log(per1 instanceof Dog);//false
+
+           // console.log(per2 instanceof Person);// 报错，per2 is not defined
+
+           console.log(typeof Person);//function
+           console.log(typeof Dog);//function
+
+           //因为 Person 和 Dog 都是使用构造函数来 建造的，因此 都是 function，但是注意没有返回值
+           var per2 = Person('lisi',20,'man');
+           console.log(per2);//undefined
+
+           var per3 = new Person('zs',18,'man');
+           console.log(per3);//Person {name: "zs", age: 18, gender: "man"}
+
+           //因此可以看见，要使用 new 来创造 构造函数的实例对象，如果不使用 new ，那么就当做是一个普通的函数，
+           //因为 Person 在定义的时候就没有返回值，因此可以看成返回值是 undefined
+
+           console.log(per2 instanceof Person);//false
+           console.log(per3 instanceof Person);//true
+           var a = 2;
+           console.log(a instanceof Person);//false
+
+
+           //因此可以看见，只要某个实例被定义，或者变量被定义，那么使用 instanceof 的时候就是 true 或者 false
+
+
+           // 接下来是原型对象
+
+           Person.prototype.callName = function(){
+               console.log(this.name);
+               //this 表示谁调用这个函数，那么 this 就是谁
+           };
+
+           per1.callName();
+           per3.callName();
+
+           Dog.prototype.callName = function(){
+               console.log(this.name);
+           };
+           Dog.prototype.call = function(){
+               console.log('汪汪~~~');
+           };
+
+           dog1.callName();
+           dog1.call();
+
+           // 之所以要在原型对象里定义函数，就是怕污染了全局作用于的命名空间
+           // 还有就是不安全，可能会被覆盖
+
+           console.log(dog1.__proto__);//可以找到 call callName
+
+           console.log(per1.__proto__);//可以找到 callName
+           // 实例可以通过 __proto__ 来访问 原型对象
+
+           //使用 属性名 in 对象 可以查看 属性 所在的位置
+           // 注意：属性名 要加上 引号
+
+           // 使用 hasOwnProperty 来检查 当前的对象 是否 含有相应的属性
+           // 语法： 对象.hasOwnProperty("属性名") --> 返回true，说明含有，返回false，说明没有
+
+           console.log("call" in dog1.__proto__);//true
+
+           console.log(dog1.__proto__.hasOwnProperty("call"));//true
+
+           console.log(dog1.__proto__ == Dog.prototype);//true
+
+           console.log("hasOwnProperty" in dog1.__proto__);//true
+           console.log(dog1.__proto__.hasOwnProperty("hasOwnProperty"));//false
+           //说明 hasOwnProperty 没有定义在 dog1的原型对象中
+           console.log("hasOwnProperty" in dog1.__proto__.__proto__);//true
+           console.log(dog1.__proto__.__proto__.hasOwnProperty("hasOwnProperty"));//true
+
+           //说明 hasOwnProperty 是被定义在 构造函数的原型对象的原型对象中的
+
+           Person.prototype.__proto__.output = function(){
+               return ('我是'+this.name+",我今年"+this.age+"岁了,我是"+this.gender+"生");//返回一段字符串
+           };
+
+           var per4 = new Person("张三",21,"男");
+           console.log(per4.output());
+
+           //如果不需要这个对象是时候，可以把这个对象给清除了，怎么清除，把这个对象设置为空对象就可以了，即
+           // 对象 = null
+           per4 = null;
+
+        </script>
+    </body>
+</html>

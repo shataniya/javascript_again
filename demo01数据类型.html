@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>js数据类型</title>
+    </head>
+    <body>
+        <script>
+        
+            var a = 10;
+            var b = 'abc';
+            var c = null;
+            var d = undefined;
+            var f = true;
+            var e = {id:1,name:3};
+            var g = [1,2,3,4,5];
+
+            console.log('a的数据类型是：'+typeof a);//number --> Number 数字
+            console.log('b的数据类型是：'+typeof b);//string --> String 字符串
+            console.log('c的数据类型是：'+typeof c);//object --> Object 对象
+            console.log('d的数据类型是：'+typeof d);//undefined --> undefined 未定义
+            console.log('f的数据类型是：'+typeof f);//boolean -->Boolean 布尔值
+            console.log('e的数据类型是：'+typeof e);//object --> Object 对象
+            console.log('g的数据类型是：'+typeof g);//object --> Object 对象
+
+            //可以看见 null 实际上是一个对象，一个空的对象
+            //数组 实际上也是一个对象
+
+            console.log(e.id);//1
+            console.log(g[1]);//2
+
+            console.log(typeof e.id);//number
+            console.log(typeof e.name);//number
+
+            //数据类型之间的转换
+
+            //其他类型转换为字符串，即 其他类型 --> String
+
+            //第一种方法：使用 toString() 方法转换成字符串 ,使用方法：数据类型.toString()
+            
+            var a1 = 123;
+            var a2 = a1.toString();
+            console.log(a1);
+            console.log(a2);
+            console.log(typeof a1);
+            console.log(typeof a2);
+
+            function show(){
+                console.log('123');
+            };
+            console.log(show());//undefined
+
+            //1.console.log() 是一个没有返回值的函数，即 返回的是 undefined
+
+            var i1 = 1234;
+            var i2 = toString(i1);
+            console.log(i1);//1234
+            console.log(i1+'');
+            console.log(i2);//[object undefined]
+
+            //2.toString('转换对象') 的返回值是 [object undefined] ，是一个字符串，正确使用方法为：转换对象.toString()
+
+            //3.在控制器中，数字是蓝色的，字符串是黑色的，即 Number是蓝色字体，String是黑色字体
+
+            //4.数组 转换成 字符串，结果是 里边的元素和逗号，但是不包括两边的方括号
+
+            //5.对象 转换成 字符串，结果是 [object object]
+
+            //6.undefined null 转换成字符串之后就是他们本身的字面量，即 undefined null
+
+
+            //使用 String() 把 其他数据类型转换成字符串
+            
+            var a1 = 123;
+            var a2 = String(a1);
+            console.log(a2);//123
+            console.log(typeof a2);//string
+
+            var b1 = true;
+            var b2 = String(b1);
+            var b3 = b1+'';
+            console.log(b1);//true
+            console.log(b2);//true
+            console.log(b3);//true
+            console.log('b1 = '+b1);//b1 = true
+            console.log('b2 = '+b2);//b2 = true
+            console.log('b3 = '+b3);//b3 = true
+            console.log(typeof b1);//number
+            console.log(typeof b2);//string
+            console.log(typeof b3);//string
+
+            var c1 = [1,2,3,4];
+            var c2 = String(c1);
+            var c3 = c1+'';
+            console.log(c1);
+            console.log(c2);
+            console.log(c3);
+            console.log('c1 = '+c1);
+            console.log('c2 = '+c2);
+            console.log('c3 = '+c3);
+            console.log(typeof c1);
+            console.log(typeof c2);
+            console.log(typeof c3);
+
+            //可以看见 数组 转换成 字符串，结果是 里面的元素和逗号，两边的方括号不算做字符串
+
+
+            var d1 = null;
+            var d2 = String(d1);
+            var d3 = d1+'';
+            console.log(d1);//null 可以发现字体颜色是灰色的
+            console.log(d2);//null 字体颜色是黑色的，说明是字符串
+            console.log(d3);//null 字体颜色是黑色的，说明是字符串
+            console.log(typeof d1);//object
+
+
+            var e1 = undefined;
+            var e2 = String(e1);
+            var e3 = e1+"";
+            console.log(e1);//undefined 可以发现字体颜色是灰色的
+            console.log(e2);//undefined 字体颜色是黑色的，说明是字符串
+            console.log(e3);//undefined 字体颜色是黑色的，说明是字符串
+            console.log(typeof e1);//undefined
+
+            //在这里可以看见，typeof 的返回值是 字符串，即 string
+
+            var f1 = {id:1,name:'lisi'};
+            var f2 = String(f1);
+            var f3 = f1+'';
+            console.log(f1);//{id:1,name:'lisi'}
+            console.log(f2);//[object object]
+            console.log(f3);//[object object]
+
+
+            //其他数据类型转换成 数字，即 其他换数据类型 --> Number
+
+            var a1 = '123';
+            var a2 = Number(a1);
+            console.log(a1);
+            console.log(a2);
+
+            var a1 = 'abc';
+            var a2 = Number(a1);
+            console.log(a1);
+            console.log(a2);//NaN,NaN 是 Not a Number 的缩写，意思就是 不是Number数据类型，但是从字体颜色可以看出，NaN 是一个 Number 类型的数据
+            console.log(typeof NaN)//number
+
+            var a1 = '123abc';
+            var a2 = Number(a1);
+            console.log(a1);
+            console.log(a2);//NaN
+
+            var a1 = '';
+            var a2 = Number(a1);
+            console.log(a1);//''
+            console.log(a2);//0
+            //空串 转换成 数字 就是 0，即 "" --> 0, 这个比较特殊
+
+            
+            var b1 = true;
+            var b2 = Number(b1);
+            console.log(b1);//true
+            console.log(b2);//1
+            console.log(typeof b1);
+
+            var b1 = null;
+            var b2 = Number(b1);
+            console.log(b1);//null
+            console.log(b2);//0
+            console.log(typeof b1);//object
+            //null 对象 转换成 数字，结果是 0，即 null --> 0
+
+            var b1 = undefined;
+            var b2 = Number(b1);
+            console.log(b1);//undefined
+            console.log(b2);//NaN
+            console.log(typeof b1);//undefined
+            //undefined 转换成 数字就是 NaN ，即 undefined --> NaN
+
+            var b1 = [1,2,3];
+            var b2 = Number(b1);
+            console.log(b1);//[1,2,3]
+            console.log(b2);//NaN
+            console.log(typeof b1);//object
+
+            var b1 = {id:1,name:'lisi'};
+            var b2 = Number(b1);
+            console.log(b1);//{id:1,name:'lisi'}
+            console.log(b2);//NaN
+            console.log(typeof b1);//object
+
+
+
+            //其他数据类型 --> Boolean
+
+            var a1 = 123;
+            var a2 = Boolean(a1);
+            console.log(a1);//123
+            console.log(a2);//true
+
+            var a1 = 0;
+            var a2 = Boolean(a1);
+            console.log(a1);//0
+            console.log(a2);//false
+
+            var a1 = -1;
+            var a2 = Boolean(a1);
+            console.log(a1);//-1
+            console.log(a2);//true
+            //可以看见 除了 0 --> false,其他的 Number --> true
+
+            //NaN --> false
+
+
+            var a1 = '123';
+            var a2 = Boolean(a1);
+            console.log(a1);//123
+            console.log(a2);//true
+
+            var a1 = '';
+            var a2 = Boolean(a1);
+            console.log(a1);
+            console.log(a2);//false
+            //可以看见 空串 转换成 字符串，结果是 false, 即 '' --> false
+
+            var a1 = undefined;
+            var a2 = Boolean(a1);
+            console.log(a1);//undefined
+            console.log(a2);//false
+            //undefined --> false
+
+            var a1 = null;
+            var a2 = Boolean(a1);
+            console.log(a1);//null
+            console.log(a2);//false
+            //null --> false
+
+            var a1 = [1,2,3];
+            var a2 = Boolean(a1);
+            console.log(a1);
+            console.log(a2);//true
+
+            var a1 = [];
+            var a2 = Boolean(a1);
+            console.log(a1);
+            console.log(a2);//true
+            //数组 转换成 boolean 结果都是 true
+
+            var a1 = {};
+            var a2 = Boolean(a1);
+            console.log(a1);
+            console.log(a2);//true
+
+            var a1 = {id:1,name:'lisi'};
+            var a2 = Boolean(a1);
+            console.log(a1);
+            console.log(typeof a1);//object
+            console.log(a2);//true
+            //总结，所有的对象（null除外） 转换成 boolean 都是 true，即 object --> true,但是 null 除外，因为：null --> false
+
+            var a = alert('nihao');
+            console.log(a);//undefined
+            console.log(typeof a);//undefined
+            //因为alert() 这个函数没有返回值，所以 返回值可以看成是 undefined 
+
+        
+        </script>
+    </body>
+</html>

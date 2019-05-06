@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>函数</title>
+    </head>
+    <body>
+        <script>
+
+            // arguments 是一个类数组，他不是数组，但是具有数组的性质
+            
+            function test(a,b){
+                console.log(arguments);
+                console.log(arguments instanceof Array);//false
+                console.log(Array.isArray(arguments));//false
+                console.log(arguments.length);
+            };
+
+            test(2,3);
+
+            var arr01 = [1,2,function(){},new Object()];
+            console.log(arr01);
+            console.log(arr01 instanceof Array);//true
+            console.log(Array.isArray(arr01));//true
+            
+            // JS 提供的数学工具，Math
+
+            // 1. Math.PI --> 圆周率
+            console.log(Math.PI);
+
+            // 2. Math.abs() --> 取绝对值
+            console.log(Math.abs(-3));
+            console.log(Math.abs(-5));
+
+            // 3. Math.ceil() --> 向上取整，只要有小数部分就进一 变大了
+            console.log("Math.ceil() --> 向上取整，只要有小数部分就进一");
+            console.log(Math.ceil(5.1));
+            console.log(Math.ceil(5.5));
+            console.log(Math.ceil(-5.1));
+            console.log(Math.ceil(-5.5));
+
+            // 4. Math.floor() --> 向下取整，舍掉小数部分 变小了
+            console.log("Math.floor() --> 向下取整，舍掉小数部分");
+            console.log(Math.floor(5.1));
+            console.log(Math.floor(5.5));
+            console.log(Math.floor(-5.1));
+            console.log(Math.floor(-5.5));
+
+            // 5. Math.round() --> 四舍五入
+            console.log("Math.round() --> 四舍五入");
+            console.log(Math.round(5.1));
+            console.log(Math.round(5.5));
+
+            // 6. Math.random() --> 生成一个 0~1 的随机数
+            console.log("Math.random() --> 生成一个 0~1 的随机数");
+            console.log(Math.random());
+
+            // 7. Math.max() --> 获取最大值
+            console.log("Math.max() --> 获取最大值");
+            console.log(Math.max(1,4,6,3,5));
+            // 8. Math.min() --> 获取最小值
+            console.log("Math.min() --> 获取最小值");
+            console.log(Math.min(1,4,6,3,5));
+
+            // 9. Math.pow(x,y) --> x的y次方
+            console.log("Math.pow(x,y) --> x的y次方");
+            console.log(Math.pow(2,4));
+            console.log(Math.pow(3,4));
+        
+        </script>
+    </body>
+</html>
